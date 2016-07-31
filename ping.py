@@ -2,9 +2,10 @@
 import os
 import threading
 import Queue
+import MyDB
 
 queue = Queue.Queue()
-address = ['113.59.61.225','115.29.16.72','www.sina.com.cn','192.168.10.222']
+address = ['113.59.61.225','115.29.16.72','www.sina.com.cn']
 _thread = 4
 
 for ip in address:
@@ -26,4 +27,22 @@ for i in range(_thread):  # 线程开始工作
 
 
 queue.join()  # 线程队列执行关闭
+
+
+conn = MyDB.DBConn()
+cursor = conn.cursor()
+#检测数据库连接
+#cursor.execute("SELECT VERSION()")
+#data = cursor.fetchone()
+#print "Database version : %s " % data
+def process():
+    conn.connect()  #建立连接
+    inserData()     #插入单条数据
+    updateData()    #更新数据
+    queryData()     #查询数据
+    conn.close()    #关闭连接
+
+def insertData():
+    sql = "insert info ServerHost"
+
 print "ping 工作已完成"
