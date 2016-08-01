@@ -17,6 +17,7 @@ def check(i,q):
         data = os.system("ping -c 1 %s>/dev/null 2>&1" % ip)    #使用os.system返回值判断是否正常
         if data==0:
             print "%s:正常" %ip
+            sql = "select info ServerHost"
         else:
             print "%s:中断" %ip
         q.task_done()   #已完成队列中提取元组数据
