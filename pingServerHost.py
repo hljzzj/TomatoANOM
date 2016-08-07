@@ -58,7 +58,7 @@ def conn():
                 t.start()
             #time.sleep(1)
     ping = threading.Thread(target=sss)
-    ping.setDaemon(True)
+    #ping.setDaemon(True)
     ping.start()
 
 
