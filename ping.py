@@ -86,6 +86,6 @@ if __name__=='__main__':
         for th in threads:
             th.join()
         print "程序结束运行%s" % datetime.datetime.now()
-        threading._sleep(5)
+        threading._sleep(30)
 
 
