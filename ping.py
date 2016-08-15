@@ -9,7 +9,7 @@ import datetime
 def Success(ip):
     try:
         #print "通：%s" % ip["hostIP"]
-        conn = mdb.connect('113.59.61.225', 'dgcmdb', 'xt*bbvfhp200451', 'DGCMDB');
+        conn = mdb.connect('127.0.0.1', 'DGCMDB', 'Dzga@110', 'DGCMDB');
         cur = conn.cursor(mdb.cursors.DictCursor)
         cur.execute(
             "INSERT INTO website_serverhostrecord(hostIP_id, status_id,updateTime ) VALUES ('%s',1,now())" % ip["id"])
@@ -23,7 +23,7 @@ def Success(ip):
 def Fail(ip):
     try:
         #print "不通：%s" % ip["hostIP"]
-        conn = mdb.connect('113.59.61.225', 'dgcmdb', 'xt*bbvfhp200451', 'DGCMDB');
+        conn = mdb.connect('127.0.0.1', 'DGCMDB', 'Dzga@110', 'DGCMDB');
         cur = conn.cursor(mdb.cursors.DictCursor)
         cur.execute(
             "INSERT INTO website_serverhostrecord(hostIP_id, status_id,updateTime ) VALUES ('%s',2,now())" % ip["id"])
