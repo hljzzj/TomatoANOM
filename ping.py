@@ -13,7 +13,7 @@ def Success(ip):
         cur = conn.cursor(mdb.cursors.DictCursor)
         cur.execute(
             "INSERT INTO website_serverhostrecord(hostIP_id, status_id,updateTime ) VALUES ('%s',1,now())" % ip["id"])
-        cur.execute("UPDATE website_ServerHost SET status_id = 1,updatetime = now() WHERE id = %s" % ip["id"])
+        cur.execute("UPDATE website_ServerHostList SET status_id = 1,updatetime = now() WHERE id = %s" % ip["id"])
         cur.close()
     except:
         print '%s\t 运行失败,失败原因' % ip["hostIP"]
@@ -29,7 +29,7 @@ def Fail(ip):
             "INSERT INTO website_serverhostrecord(hostIP_id, status_id,updateTime ) VALUES ('%s',2,now())" % ip["id"])
 
 
-        cur.execute("UPDATE website_ServerHost SET status_id = 2 WHERE id = %s" % ip["id"])
+        cur.execute("UPDATE website_ServerHostList SET status_id = 2 WHERE id = %s" % ip["id"])
 
     except :
         print '%s\t 运行失败,失败原因' % ip["hostIP"]
@@ -65,9 +65,9 @@ if __name__=='__main__':
     while True:
         queue = Queue.Queue()
         try:
-            conn = mdb.connect('113.59.61.225', 'dgcmdb', 'xt*bbvfhp200451', 'DGCMDB');
+            conn = mdb.connect('127.0.0.1', 'DGCMDB', 'Dzga@110', 'DGCMDB');
             cur = conn.cursor(mdb.cursors.DictCursor)
-            cur.execute("SELECT hostIP,id,status_id FROM website_ServerHost")
+            cur.execute("SELECT hostIP,id,status_id FROM website_ServerHostList")
             rows = cur.fetchall()
 
             cur.close()
